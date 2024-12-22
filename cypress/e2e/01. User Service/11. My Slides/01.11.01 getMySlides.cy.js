@@ -1,6 +1,9 @@
-describe("Create my issue post successfully with status code 200", () => {
-  let accessToken;
-  let enrollmentId;
+let accessToken;
+let enrollmentId;
+let page = 1;
+let limit = 8;
+let query = "Test";
+describe("Get my slides successfully with status code 200", () => {
   before(() => {
     cy.readFile("cypress/fixtures/studentToken.json").then((tokenData) => {
       accessToken = tokenData.studentLoginToken;
@@ -10,19 +13,13 @@ describe("Create my issue post successfully with status code 200", () => {
     });
   });
 
-  it("Checking if should be able to Create my issue post or not", () => {
+  it("Checking if should be able to Get my slides or not", () => {
     cy.request({
-      method: "POST",
-      url: "/communication/create",
+      method: "GET",
+      url: `/slide/myslides?page=${page}&limit=${limit}&query=${query}`,
       headers: {
         Authorization: `Bearer ${accessToken}`,
         Enrollment: enrollmentId,
-      },
-      body: {
-        title: "test",
-        date: "2024-12-20T18:00:00.000Z",
-        description: "fasdasd",
-        category: "issues",
       },
       failOnStatusCode: false,
     }).then((response) => {
@@ -32,20 +29,15 @@ describe("Create my issue post successfully with status code 200", () => {
         expect(response.duration).to.be.lessThan(2000);
         expect(response.body).to.have.property("success", true);
         // Log the response for debugging
-        cy.log("Issue posted successfully");
-        console.log("Issue posted successfully");
+        cy.log("Get my slides successfully");
+        console.log("Get my slides successfully");
         cy.log("response.body", JSON.stringify(response.body, null, 1));
         console.log("response.body", JSON.stringify(response.body, null, 1));
       } else {
-        cy.log(
-          "Create my issue post failed with status code:",
-          response.status
-        );
-        console.log(
-          `Create my issue post failed with status code ${response.status}`
-        );
-        cy.log(`Create my issue post failed  ${response.body.error}`);
-        console.log(`Create my issue post failed  ${response.body.error}`);
+        cy.log("Get my slides failed with status code:", response.status);
+        console.log(`Get my slides failed with status code ${response.status}`);
+        cy.log(`Get my slides failed  ${response.body.error}`);
+        console.log(`Get my slides failed  ${response.body.error}`);
       }
     });
   });

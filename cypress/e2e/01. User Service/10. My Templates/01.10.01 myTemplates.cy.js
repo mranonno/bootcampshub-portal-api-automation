@@ -1,4 +1,4 @@
-describe("Create my issue post successfully with status code 200", () => {
+describe("Get my templates successfully with status code 200", () => {
   let accessToken;
   let enrollmentId;
   before(() => {
@@ -10,19 +10,13 @@ describe("Create my issue post successfully with status code 200", () => {
     });
   });
 
-  it("Checking if should be able to Create my issue post or not", () => {
+  it("Checking if should be able to Get my templates or not", () => {
     cy.request({
-      method: "POST",
-      url: "/communication/create",
+      method: "GET",
+      url: "/template/mytemplates",
       headers: {
         Authorization: `Bearer ${accessToken}`,
         Enrollment: enrollmentId,
-      },
-      body: {
-        title: "test",
-        date: "2024-12-20T18:00:00.000Z",
-        description: "fasdasd",
-        category: "issues",
       },
       failOnStatusCode: false,
     }).then((response) => {
@@ -32,20 +26,17 @@ describe("Create my issue post successfully with status code 200", () => {
         expect(response.duration).to.be.lessThan(2000);
         expect(response.body).to.have.property("success", true);
         // Log the response for debugging
-        cy.log("Issue posted successfully");
-        console.log("Issue posted successfully");
+        cy.log("Get my templates successfully");
+        console.log("Get my templates successfully");
         cy.log("response.body", JSON.stringify(response.body, null, 1));
         console.log("response.body", JSON.stringify(response.body, null, 1));
       } else {
-        cy.log(
-          "Create my issue post failed with status code:",
-          response.status
-        );
+        cy.log("Get my templates failed with status code:", response.status);
         console.log(
-          `Create my issue post failed with status code ${response.status}`
+          `Get my templates failed with status code ${response.status}`
         );
-        cy.log(`Create my issue post failed  ${response.body.error}`);
-        console.log(`Create my issue post failed  ${response.body.error}`);
+        cy.log(`Get my templates failed  ${response.body.error}`);
+        console.log(`Get my templates failed  ${response.body.error}`);
       }
     });
   });
