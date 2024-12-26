@@ -1,19 +1,19 @@
 {
- "name": "bootcamphub_app",
- "version": "1.0.0",
- "main": "cypress.config.js",
- "scripts": {
-  "test": "echo \"Error: no test specified\" && exit 1"
- },
- "author": "",
- "license": "ISC",
- "description": "",
- "devDependencies": {
-  "@cypress/grep": "^4.1.0",
-  "cypress": "^13.15.2",
-  "cypress-mochawesome-reporter": "^3.8.2"
- },
- "dependencies": {
-  "@faker-js/faker": "^9.2.0"
- }
+  "name": "bootcamphub_app",
+  "version": "1.0.0",
+  "main": "cypress.config.js",
+  "scripts": {
+    "test": "cypress run"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@cypress/grep": "^4.1.0",
+    "cypress": "^13.15.2",
+    "cypress-mochawesome-reporter": "^3.8.2"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^9.2.0"
+  }
 }
